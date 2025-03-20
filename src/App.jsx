@@ -139,32 +139,33 @@ export default function MoodLogger() {
           {/* Left Section - Calendar & Stats */}
           <div className="md:col-span-1 space-y-6">
             {/* Calendar Card */}
-            <Card className="shadow-lg border border-indigo-200 rounded-xl">
-              <CardHeader className="bg-gradient-to-r from-indigo-100 to-purple-100 border-b border-indigo-200 rounded-t-xl px-6 py-4">
-                <CardTitle className="text-indigo-900 font-semibold text-lg">Calendar View</CardTitle>
+            <Card className="shadow-lg border border-indigo-200 dark:border-gray-700 rounded-xl bg-white dark:bg-gray-800">
+              <CardHeader className="bg-gradient-to-r from-indigo-100 to-purple-100 dark:from-gray-800 dark:to-gray-700 border-b border-indigo-200 dark:border-gray-600 rounded-t-xl px-6 py-4">
+                <CardTitle className="text-indigo-900 dark:text-white font-semibold text-lg">Calendar View</CardTitle>
               </CardHeader>
               <CardContent className="p-6 flex justify-center">
                 <Calendar 
                   logs={logs}
                   selected={selectedDate}
                   onSelect={setSelectedDate}
-                  className="rounded-lg p-3 bg-white"
+                  className="rounded-lg p-3 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                 />
               </CardContent>
             </Card>
+
             {/* Stats Card */}
-            <Card className="shadow-lg border border-indigo-200 rounded-xl">
-              <CardHeader className="bg-gradient-to-r from-indigo-100 to-purple-100 border-b border-indigo-200 rounded-t-xl px-6 py-4">
-                <CardTitle className="text-indigo-900 font-semibold text-lg">Quick Stats</CardTitle>
+            <Card className="shadow-lg border border-indigo-200 dark:border-gray-700 rounded-xl bg-white dark:bg-gray-800">
+              <CardHeader className="bg-gradient-to-r from-indigo-100 to-purple-100 dark:from-gray-800 dark:to-gray-700 border-b border-indigo-200 dark:border-gray-600 rounded-t-xl px-6 py-4">
+                <CardTitle className="text-indigo-900 dark:text-white font-semibold text-lg">Quick Stats</CardTitle>
               </CardHeader>
               <CardContent className="p-6 space-y-4">
                 <div className="flex justify-between items-center">
-                  <p className="text-gray-700 text-md">Total Entries:</p>
-                  <p className="text-xl font-semibold text-indigo-700">{logs.length}</p>
+                  <p className="text-gray-700 dark:text-gray-300 text-md">Total Entries:</p>
+                  <p className="text-xl font-semibold text-indigo-700 dark:text-indigo-400">{logs.length}</p>
                 </div>
                 <div className="flex justify-between items-center">
-                  <p className="text-gray-700 text-md">This Month:</p>
-                  <p className="text-xl font-semibold text-purple-700">
+                  <p className="text-gray-700 dark:text-gray-300 text-md">This Month:</p>
+                  <p className="text-xl font-semibold text-purple-700 dark:text-purple-400">
                     {logs.filter(log => new Date(log.date).getMonth() === new Date().getMonth()).length}
                   </p>
                 </div>
@@ -175,15 +176,15 @@ export default function MoodLogger() {
           {/* Center/Right Sections - Mood Logging & History */}
           <div className="md:col-span-2 space-y-6">
             {/* Mood Logging Card */}
-            <Card className="shadow-lg border border-indigo-200 rounded-xl">
-              <CardHeader className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-t-xl px-6 py-4">
+            <Card className="shadow-lg border border-indigo-200 dark:border-gray-700 rounded-xl bg-white dark:bg-gray-800">
+              <CardHeader className="bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-700 dark:to-purple-800 text-white rounded-t-xl px-6 py-4">
                 <CardTitle className="text-lg font-semibold">How are you feeling today?</CardTitle>
               </CardHeader>
               <CardContent className="p-6 space-y-4">
                 <Form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <FormGroup>
-                      <FormLabel htmlFor="mood" className="font-medium">Mood</FormLabel>
+                      <FormLabel htmlFor="mood" className="font-medium dark:text-gray-300">Mood</FormLabel>
                       <FormSelect
                         id="mood"
                         name="mood"
@@ -191,24 +192,24 @@ export default function MoodLogger() {
                         onChange={handleChange}
                         options={moodOptions}
                         required
-                        className="rounded-md border-gray-300 focus:ring-indigo-500"
+                        className="rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-indigo-500"
                       />
                     </FormGroup>
 
                     <FormGroup>
-                      <FormLabel htmlFor="intensity" className="font-medium">Intensity</FormLabel>
+                      <FormLabel htmlFor="intensity" className="font-medium dark:text-gray-300">Intensity</FormLabel>
                       <FormSelect
                         id="intensity"
                         name="intensity"
                         value={formData.intensity}
                         onChange={handleChange}
                         options={intensityOptions}
-                        className="rounded-md border-gray-300 focus:ring-indigo-500"
+                        className="rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-indigo-500"
                       />
                     </FormGroup>
                   </div>
                   <FormGroup>
-                    <FormLabel htmlFor="notes" className="font-medium">Notes (optional)</FormLabel>
+                    <FormLabel htmlFor="notes" className="font-medium dark:text-gray-300">Notes (optional)</FormLabel>
                     <FormTextarea
                       id="notes"
                       name="notes"
@@ -216,31 +217,32 @@ export default function MoodLogger() {
                       value={formData.notes}
                       onChange={handleChange}
                       rows={3}
-                      className="rounded-md border-gray-300 focus:ring-indigo-500"
+                      className="rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-indigo-500"
                     />
                   </FormGroup>
                   <Button 
                     type="submit"
-                    className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-2 rounded-lg font-medium transition-all"
+                    className="w-full bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 text-white py-2 rounded-lg font-medium transition-all"
                   >
                     Log Mood
                   </Button>
                 </Form>
               </CardContent>
             </Card>
+
             {/* Mood History Card */}
-            <Card className="shadow-lg border border-indigo-200 rounded-xl">
-              <CardHeader className="bg-indigo-50 border-b border-indigo-200 flex flex-row justify-between items-center px-6 py-4 rounded-t-xl">
-                <CardTitle className="text-indigo-800 font-semibold text-lg">
+            <Card className="shadow-lg border border-indigo-200 dark:border-gray-700 rounded-xl bg-white dark:bg-gray-800">
+              <CardHeader className="bg-indigo-50 dark:bg-gray-700 border-b border-indigo-200 dark:border-gray-600 flex flex-row justify-between items-center px-6 py-4 rounded-t-xl">
+                <CardTitle className="text-indigo-800 dark:text-white font-semibold text-lg">
                   {selectedDate ? `Entries for ${selectedDate.toLocaleDateString("en-GB")}` : "Recent Entries"}
                 </CardTitle>
-                <div className="flex space-x-2 rounded-md overflow-hidden border border-indigo-300">
+                <div className="flex space-x-2 rounded-md overflow-hidden border border-indigo-300 dark:border-gray-600">
                   <button
                     onClick={() => setView("list")}
                     className={`px-4 py-2 text-sm transition-all ${
                       view === "list" 
-                        ? "bg-indigo-500 text-white" 
-                        : "bg-white text-indigo-600 hover:bg-indigo-100"
+                        ? "bg-indigo-500 dark:bg-indigo-600 text-white" 
+                        : "bg-white dark:bg-gray-700 text-indigo-600 dark:text-white hover:bg-indigo-100 dark:hover:bg-gray-600"
                     }`}
                   >
                     List
@@ -249,8 +251,8 @@ export default function MoodLogger() {
                     onClick={() => setView("grid")}
                     className={`px-4 py-2 text-sm transition-all ${
                       view === "grid" 
-                        ? "bg-indigo-500 text-white" 
-                        : "bg-white text-indigo-600 hover:bg-indigo-100"
+                        ? "bg-indigo-500 dark:bg-indigo-600 text-white" 
+                        : "bg-white dark:bg-gray-700 text-indigo-600 dark:text-white hover:bg-indigo-100 dark:hover:bg-gray-600"
                     }`}
                   >
                     Grid
@@ -259,7 +261,7 @@ export default function MoodLogger() {
               </CardHeader>
               <CardContent className="p-6">
                 {filteredLogs.length === 0 ? (
-                  <div className="text-center p-8 text-gray-500">
+                  <div className="text-center p-8 text-gray-500 dark:text-gray-400">
                     <p>No moods logged {selectedDate ? "for this date" : "yet"}.</p>
                     <p className="text-sm mt-1">Share how you feel to get started!</p>
                   </div>
@@ -268,11 +270,11 @@ export default function MoodLogger() {
                     {filteredLogs.map((log) => (
                       <div
                         key={log.id}
-                        className={`relative p-5 rounded-lg shadow-sm border border-gray-200 ${getMoodStyle(log.mood)} bg-opacity-90 transition-all hover:shadow-md`}
+                        className={`relative p-5 rounded-lg shadow-sm border border-gray-200 dark:border-gray-600 ${getMoodStyle(log.mood)} bg-opacity-90 dark:bg-opacity-80 transition-all hover:shadow-md`}
                       >
                         <div className="flex justify-between items-start">
                           <div>
-                            <p className="text-sm text-gray-600">
+                            <p className="text-sm text-gray-600 dark:text-gray-400">
                               {new Date(log.timestamp).toLocaleString("en-GB", {
                                 hour: "numeric",
                                 minute: "numeric",
@@ -281,23 +283,23 @@ export default function MoodLogger() {
                                 month: "short",
                               })}
                             </p>
-                            <p className="text-lg font-semibold text-indigo-800 mt-1">{log.mood}</p>
+                            <p className="text-lg font-semibold text-indigo-800 dark:text-indigo-300 mt-1">{log.mood}</p>
                           </div>
-                          <div className="px-3 py-1 rounded bg-white bg-opacity-75 text-xs font-medium text-gray-700">
+                          <div className="px-3 py-1 rounded bg-white dark:bg-gray-600 bg-opacity-75 dark:bg-opacity-50 text-xs font-medium text-gray-700 dark:text-gray-300">
                             Intensity: {log.intensity}/5
                           </div>
                         </div>
 
                         {log.notes && (
-                          <div className="mt-3 pt-2 border-t border-gray-200">
-                            <p className="text-sm text-gray-700">{log.notes}</p>
+                          <div className="mt-3 pt-2 border-t border-gray-200 dark:border-gray-600">
+                            <p className="text-sm text-gray-700 dark:text-gray-300">{log.notes}</p>
                           </div>
                         )}
 
                         {/* 🗑 Trash Icon Button (Delete Log) */}
                         <button
                           onClick={() => handleDelete(log.id)}
-                          className="absolute bottom-3 right-3 text-red-500 hover:text-red-700 transition-all"
+                          className="absolute bottom-3 right-3 text-red-500 dark:text-red-400 hover:text-red-700 dark:hover:text-red-600 transition-all"
                         >
                           <Trash2 className="w-5 h-5" />
                         </button>
