@@ -5,6 +5,8 @@ import { Calendar } from "./components/ui/calendar.jsx";
 import { Form, FormGroup, FormLabel, FormSelect, FormTextarea } from "./components/ui/form.jsx";
 import TopNav from "./components/header.jsx";
 import { Trash2 } from "lucide-react";
+import { ThemeProvider } from "./contexts/theme.js";
+import { useEffect } from "react"; //Import use effect
 
 export default function MoodLogger() {
   const [formData, setFormData] = useState({
@@ -108,8 +110,25 @@ export default function MoodLogger() {
   ? logs.filter(log => log.date === selectedDate.toISOString().split("T")[0])
   : logs;
 
+  //  Theme mode function
+  const [themeMode,setThemeMode]=useState("light");
+  const lightTheme=()=>{
+    setThemeMode("light")
+  }
+  const darkTheme=()=>{
+    setThemeMode("dark")
+  }
+
+  // actual theme change
+  useEffect(() => {
+   document.querySelector('html').classList.remove("light","dark")
+   document.querySelector('html').classList.add(themeMode)
+  }, [themeMode])
+  
+
   return (
-    <div className="flex flex-col min-h-screen bg-gradient-to-br from-indigo-50 to-purple-50">
+    <ThemeProvider  value={{themeMode , lightTheme , darkTheme}}>
+    <div className="flex flex-col min-h-screen bg-gradient-to-br from-indigo-50 to-purple-50   dark:from-gray-900 dark:to-gray-800">
       {/* Header */}
       <TopNav />
 
@@ -293,5 +312,6 @@ export default function MoodLogger() {
         </div>
       </main>
     </div>
+    </ThemeProvider>
   );
 }
