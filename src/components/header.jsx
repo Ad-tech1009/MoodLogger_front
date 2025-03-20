@@ -1,12 +1,18 @@
 import { useState } from "react";
 import { Moon, Sun, User } from "lucide-react"; // Import icons
-
+import useTheme from "../contexts/theme";
 const TopNav = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
+  
+ const {themeMode, lightTheme, darkTheme}=useTheme(); 
+
+
 
   return (
-    <header className="bg-white shadow-md border-b border-gray-200 relative">
+    
+    <header className="bg-white shadow-md border-b border-gray-200 relative dark:bg-gray-900 dark:border-gray-700 dark:shadow-lg">
+      
       <div className="container mx-auto px-6 py-4 flex justify-between items-center">
         {/* App Title */}
         <h1 className="text-2xl font-bold text-indigo-800">
@@ -16,10 +22,10 @@ const TopNav = () => {
         <div className="flex items-center gap-5">
           {/* Dark Mode Toggle (Dummy) */}
           <button
-            onClick={() => setIsDarkMode(!isDarkMode)}
+            onClick={() => {themeMode === "dark" ? lightTheme() : darkTheme();}}
             className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-200 hover:bg-gray-300 transition duration-300"
           >
-            {isDarkMode ? <Sun className="w-5 h-5 text-yellow-500" /> : <Moon className="w-5 h-5 text-gray-800" />}
+            {themeMode === "dark" ? <Sun className="w-5 h-5 text-yellow-500" /> : <Moon className="w-5 h-5 text-gray-800" />}
           </button>
           {/* Profile Section */}
           <div className="relative">
@@ -43,6 +49,7 @@ const TopNav = () => {
           </div>
         </div>
       </div>
+      
     </header>
   );
 };
